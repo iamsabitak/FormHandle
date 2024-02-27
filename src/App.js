@@ -1,12 +1,10 @@
 import React from "react";
-// import FormHandling from "./FormHandling";
-import SignUp from "./SignUp.jsx";
+import FormHandling3 from "./FormHandlingv-3.jsx.jsx";
 
 function App() {
   return (
     <div>
-      {/* <FormHandling /> */}
-      <SignUp />
+      <FormHandling3/>
     </div>
   );
 }
