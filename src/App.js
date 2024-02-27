@@ -1,5 +1,5 @@
 import React from "react";
-import FormHandling3 from "./FormHandlingv-3.jsx.jsx";
+import FormHandling3 from "./FormHandlingv-3.jsx";
 
 function App() {
   return (
