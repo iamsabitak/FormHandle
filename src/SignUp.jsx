@@ -1,6 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
-
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import UserInformation from "./UserInformation";
@@ -40,80 +39,84 @@ function SignUp() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
   const onSubmit = (data) => console.log(data);
+
   return (
-    <>
-      <div className="d-grid gap-2 col-3 mx-auto">
-        <h2>Basic Information</h2>
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+          <h2 className="text-center mb-4">Sign Up</h2>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="mb-3">
+              <input
+                type="text"
+                name="firstName"
+                placeholder="First Name"
+                {...register("firstName")}
+                className={`form-control ${
+                  errors.firstName ? "is-invalid" : ""
+                }`}
+              />
+              {errors.firstName && (
+                <div className="invalid-feedback">
+                  {errors.firstName?.message}
+                </div>
+              )}
+            </div>
+            <div className="mb-3">
+              <input
+                type="text"
+                name="lastName"
+                {...register("lastName")}
+                placeholder="Last Name"
+                className={`form-control ${
+                  errors.lastName ? "is-invalid" : ""
+                }`}
+              />
+              {errors.lastName && (
+                <div className="invalid-feedback">
+                  {errors.lastName?.message}
+                </div>
+              )}
+            </div>
+            <div className="mb-3">
+              <input
+                type="email"
+                name="email"
+                {...register("email")}
+                placeholder="Email Address"
+                className={`form-control ${errors.email ? "is-invalid" : ""}`}
+              />
+              {errors.email && (
+                <div className="invalid-feedback">{errors.email?.message}</div>
+              )}
+            </div>
+            <div className="mb-3">
+              <input
+                type="password"
+                name="password"
+                {...register("password")}
+                placeholder="Password"
+                className={`form-control ${
+                  errors.password ? "is-invalid" : ""
+                }`}
+              />
+              {errors.password && (
+                <div className="invalid-feedback">
+                  {errors.password?.message}
+                </div>
+              )}
+            </div>
+            <button type="submit" className="btn btn-primary btn-block">
+              Create New Account
+            </button>
+          </form>
+        </div>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="row mb-3">
-          <div className="col">
-            <input
-              type="text"
-              placeholder="First Name"
-              {...register("firstName")}
-              className={`form-control ${errors.firstName ? "is-invalid" : ""}`}
-            />
-            {errors.firstName && (
-              <div className="invalid-feedback">
-                {errors.firstName?.message}
-              </div>
-            )}
-          </div>
-          <div className="col">
-            <input
-              type="text"
-              {...register("lastName")}
-              placeholder="Last Name"
-              className={`form-control ${errors.lastName ? "is-invalid" : ""}`}
-            />
-            {errors.lastName && (
-              <div className="invalid-feedback">{errors.lastName?.message}</div>
-            )}
-          </div>
-        </div>
-
-        <div className="row mb-3">
-          <div className="col">
-            <input
-              type="email"
-              {...register("email")}
-              placeholder="Email Address"
-              className={`form-control ${errors.email ? "is-invalid" : ""}`}
-            />
-            {errors.email && (
-              <div className="invalid-feedback">{errors.email?.message}</div>
-            )}
-          </div>
-          <div className="col">
-            <input
-              type="password"
-              {...register("password")}
-              placeholder="Password"
-              className={`form-control ${errors.password ? "is-invalid" : ""}`}
-            />
-            {errors.password && (
-              <div className="invalid-feedback">{errors.password?.message}</div>
-            )}
-          </div>
-        </div>
-
-        <button
-          type="submit"
-          className="btn btn-outline-primary d-grid gap-2 col-6 mx-auto"
-        >
-          Create New Account
-        </button>
-      </form>
-      <UserInformation control={control} />
-    </>
+      <UserInformation control={control} handleSubmit={handleSubmit} />
+    </div>
   );
 }
 
 export default SignUp;
-
-
-
-
- 
