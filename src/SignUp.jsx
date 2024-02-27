@@ -1,29 +1,35 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
 
-import { useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import UserInformation from "./UserInformation";
 
 function SignUp() {
-  // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const nameRegex = /^[^\d]{2,}$/;
+  const passwordRegex =
+    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/;
 
   const schema = yup.object().shape({
     firstName: yup
       .string()
       .min(2, "Name must be at least 2 characters")
-      .matches(nameRegex, "FirstName must not contain numbers")
-      .required("FirstName is required"),
+      .matches(nameRegex, "First Name must not contain numbers")
+      .required("First Name is required"),
     lastName: yup
       .string()
-      .min(2, "LastName must be at least 2 characters")
-      .matches(nameRegex, "LastName must not contain numbers")
-      .required("LastName is required"),
+      .min(2, "Last Name must be at least 2 characters")
+      .matches(nameRegex, "Last Name must not contain numbers")
+      .required("Last Name is required"),
     email: yup
       .string()
       .email("Invalid email format")
       .required("Email is required"),
-    password: yup.string().min(8).required("Password is Required"),
+    password: yup
+      .string()
+      .min(8)
+      .matches(passwordRegex, "Invalid password format")
+      .required("Password is required"),
   });
 
   const {
@@ -37,87 +43,77 @@ function SignUp() {
   const onSubmit = (data) => console.log(data);
   return (
     <>
-      <h2>Basic Information</h2>
+      <div className="d-grid gap-2 col-3 mx-auto">
+        <h2>Basic Information</h2>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <input
-            type="text"
-            placeholder="Enter Your First name"
-            {...register("firstName")}
-          />
-          {errors.firstName && <span>{errors.firstName?.message}</span>}
+        <div className="row mb-3">
+          <div className="col">
+            <input
+              type="text"
+              placeholder="First Name"
+              {...register("firstName")}
+              className={`form-control ${errors.firstName ? "is-invalid" : ""}`}
+            />
+            {errors.firstName && (
+              <div className="invalid-feedback">
+                {errors.firstName?.message}
+              </div>
+            )}
+          </div>
+          <div className="col">
+            <input
+              type="text"
+              {...register("lastName")}
+              placeholder="Last Name"
+              className={`form-control ${errors.lastName ? "is-invalid" : ""}`}
+            />
+            {errors.lastName && (
+              <div className="invalid-feedback">{errors.lastName?.message}</div>
+            )}
+          </div>
         </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Enter Your Last name"
-            {...register("lastName")}
-          />
-          {errors.lastName && <span>{errors.lastName?.message}</span>}
+
+        <div className="row mb-3">
+          <div className="col">
+            <input
+              type="email"
+              {...register("email")}
+              placeholder="Email Address"
+              className={`form-control ${errors.email ? "is-invalid" : ""}`}
+            />
+            {errors.email && (
+              <div className="invalid-feedback">{errors.email?.message}</div>
+            )}
+          </div>
+          <div className="col">
+            <input
+              type="password"
+              {...register("password")}
+              placeholder="Password"
+              className={`form-control ${errors.password ? "is-invalid" : ""}`}
+            />
+            {errors.password && (
+              <div className="invalid-feedback">{errors.password?.message}</div>
+            )}
+          </div>
         </div>
-        <div>
-          <input
-            type="email"
-            placeholder="Enter Your E-mail Address"
-            {...register("email")}
-          />
-          {errors.email && <span>{errors.email?.message}</span>}
-        </div>
-        <div>
-          <input
-            type="password"
-            placeholder="Enter your password"
-            {...register("password")}
-          />
-          {errors.password && <span>{errors.password?.message}</span>}
-        </div>
-        <UserInformation
-          register={register}
-          control={control}
-          handleSubmit={handleSubmit}
-        />
-        <br />
-        <button type="submit">Create New Account</button>
+
+        <button
+          type="submit"
+          className="btn btn-outline-primary d-grid gap-2 col-6 mx-auto"
+        >
+          Create New Account
+        </button>
       </form>
+      <UserInformation control={control} />
     </>
   );
 }
 
 export default SignUp;
 
-const UserInformation = ({ register, control }) => {
-  const { append, remove, fields } = useFieldArray({
-    control,
-    name: "user",
-  });
 
-  return (
-    <>
-      <h2>User Information</h2>
-      {fields.map((index, item) => (
-        <div key={index.id}>
-          <input
-            id="firstName"
-            type="text"
-            placeholder="Enter Your First name"
-            {...register(`user.${index}.firstName`)}
-          />
 
-          <input
-            id="lastName"
-            type="text"
-            placeholder="Enter Your Last name"
-            {...register(`user.${index}.lastName`)}
-          />
 
-          <button onClick={() => remove(index)}>delete</button>
-        </div>
-      ))}
-      <button
-        onClick={() => append({ firstName: "Sabita", lastName: "Khadka" })}
-      >
-        Add New Account
-      </button>
-    </>
-  );
-};
+Add form validation using Yup schema in SignUp component
