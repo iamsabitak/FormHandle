@@ -42,6 +42,7 @@ const UserInformation = ({ control }) => {
                 />
               </div>
             </div>
+
             {/* <div className="row mb-3">
               <div className="col-md-6 mb-3">
                 <Controller
@@ -77,7 +78,7 @@ const UserInformation = ({ control }) => {
             <div className="text-center">
               <button
                 onClick={() => remove(index)}
-                className="btn btn-outline-danger me-2"
+                className="btn btn-danger me-2"
               >
                 Delete
               </button>
@@ -87,7 +88,7 @@ const UserInformation = ({ control }) => {
       ))}
       <div className="text-center">
         <button
-          className="btn btn-outline-primary"
+          className="btn btn-primary"
           onClick={() =>
             append({
               firstName: "DefaultFirstName",
