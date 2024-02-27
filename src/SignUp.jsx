@@ -116,4 +116,3 @@ export default SignUp;
 
 
 
-Add form validation using Yup schema in SignUp component
