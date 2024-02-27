@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import UserInformation from "./UserInformation";
 
-function SignUp() {
+function FormHandling() {
   const nameRegex = /^[^\d]{2,}$/;
   const passwordRegex =
     /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/;
@@ -119,4 +119,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default FormHandling;
