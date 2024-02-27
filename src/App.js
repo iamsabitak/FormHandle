@@ -1,6 +1,5 @@
 import React from "react";
 // import FormHandling from "./FormHandling";
-// import Fieldarray from "./FieldArray";
 import SignUp from "./SignUp.jsx";
 
 function App() {
@@ -8,9 +7,11 @@ function App() {
     <div>
       {/* <FormHandling /> */}
       <SignUp />
-      {/* <Fieldarray /> */}
     </div>
   );
 }
 
+
 export default App;
+
+
