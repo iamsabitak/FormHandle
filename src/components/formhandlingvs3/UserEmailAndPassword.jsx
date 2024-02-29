@@ -6,14 +6,14 @@ function UserEmailAndPassword({ index, control }) {
     <div className="row mb-3">
       <div className="col-md-6 mb-3">
         <Controller
-          name={`user.${index}.email`}
+          name={`user.${index}.firstName`}
           control={control}
-          defaultValue=""
+          defaultValue="defaultFirstName"
           render={({ field }) => (
             <input
               {...field}
-              type="email"
-              placeholder="Email Address"
+              type="firstName"
+              placeholder="First Name"
               className="form-control"
             />
           )}
@@ -21,14 +21,14 @@ function UserEmailAndPassword({ index, control }) {
       </div>
       <div className="col-md-6 mb-3">
         <Controller
-          name={`user.${index}.password`}
+          name={`user.${index}.lastName`}
           control={control}
-          defaultValue=""
+          defaultValue="defaultlastName"
           render={({ field }) => (
             <input
               {...field}
-              type="password"
-              placeholder="Password"
+              type="text"
+              placeholder="Last Name"
               className="form-control"
             />
           )}
