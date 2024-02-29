@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 function UncontrolledComponent() {
   // Created a ref to hold a reference to the input DOM element
@@ -9,6 +9,10 @@ function UncontrolledComponent() {
     alert("Hello" + inputRef.current.value);
     console.log(inputRef.current.value);
   };
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   // Rendered the input field without controlling its value via state
   return (
