@@ -1,7 +1,7 @@
 import React from "react";
 import { Controller } from "react-hook-form";
 
-function UserEmailAndPassword({ index, control }) {
+function UserName({ index, control }) {
   return (
     <div className="row mb-3">
       <div className="col-md-6 mb-3">
@@ -38,4 +38,4 @@ function UserEmailAndPassword({ index, control }) {
   );
 }
 
-export default UserEmailAndPassword;
+export default UserName;
