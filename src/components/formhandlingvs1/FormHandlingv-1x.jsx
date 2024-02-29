@@ -62,21 +62,3 @@ function FormHandling1() {
 
 export default FormHandling1;
 
-/// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
-// const navigate = useNavigate();
-
-// React.useEffect(() => {
-// const PostApiHandling = async () => {
-//   try {
-//     const res = await axios.post("https://reqres.in/api/login", inputValue);
-//     console.log(res.data);
-//     console.log(inputValue);
-//     localStorage.setItem("token", res.data.token);
-//     // navigate("/home")
-//   } catch (error) {
-//     console.log("Error:", error);
-//   }
-// };
-// PostApiHandling();
-// }, [inputValue]);
